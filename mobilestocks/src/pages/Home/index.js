@@ -9,6 +9,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { AreaChart, Grid, XAxis, YAxis } from 'react-native-svg-charts';
 import { View } from 'react-native';
+import NumberFormat from 'react-number-format';
 
 import { addStocksRequest } from '../../store/modules/stocks/actions';
 import Card from '../../components/Card';
@@ -84,7 +85,15 @@ export default function Home() {
                 <>
                   <LatestPrice>
                     <Price>
-                      <TPrice>{latestPrice}</TPrice>
+                      <NumberFormat
+                        value={latestPrice}
+                        displayType="text"
+                        thousandSeparator="."
+                        decimalSeparator=","
+                        renderText={value => <TPrice>{value}</TPrice>}
+                        decimalScale={2}
+                        prefix="$"
+                      />
                       <TCurrency>USD</TCurrency>
                     </Price>
                     <Logo
@@ -103,32 +112,46 @@ export default function Home() {
                 </>
               </Card>
               <Card loading={loading}>
-                <View style={{ height: 250, padding: 5, flexDirection: 'row' }}>
-                  <YAxis
-                    data={historicalPrices.map(stock => stock.value)}
-                    style={{ marginRight: 5, marginBottom: 10, marginTop: 10 }}
-                    contentInset={{ top: 10, bottom: 10 }}
-                    numberOfTicks={5}
-                  />
-                  <View style={{ flex: 1, height: 250, marginLeft: 0 }}>
-                    <AreaChart
+                <>
+                  <CTitle>Last 5 days</CTitle>
+                  <View
+                    style={{ height: 250, padding: 5, flexDirection: 'row' }}
+                  >
+                    <YAxis
                       data={historicalPrices.map(stock => stock.value)}
-                      style={{ flex: 1 }}
-                      svg={{ fill: 'rgba(134, 65, 244, 0.8)' }}
+                      style={{
+                        marginRight: 5,
+                        marginBottom: 10,
+                        marginTop: 10,
+                      }}
                       contentInset={{ top: 10, bottom: 10 }}
                       numberOfTicks={5}
-                    >
-                      <Grid />
-                    </AreaChart>
-                    <XAxis
-                      style={{ marginHorizontal: 5 }}
-                      data={historicalPrices}
-                      formatLabel={(_, index) => historicalPrices[index].label}
-                      svg={{ fontSize: 12, fill: 'black' }}
-                      contentInset={{ left: 15, right: 15 }}
                     />
+                    <View style={{ flex: 1, height: 250, marginLeft: 0 }}>
+                      <AreaChart
+                        data={historicalPrices.map(stock => stock.value)}
+                        style={{ flex: 1 }}
+                        svg={{
+                          fill: 'rgba(136, 132, 216, 0.8)',
+                          stroke: '#8884d8',
+                        }}
+                        contentInset={{ top: 10, bottom: 10 }}
+                        numberOfTicks={5}
+                      >
+                        <Grid />
+                      </AreaChart>
+                      <XAxis
+                        style={{ marginHorizontal: 5 }}
+                        data={historicalPrices}
+                        formatLabel={(_, index) =>
+                          historicalPrices[index].label
+                        }
+                        svg={{ fontSize: 12, fill: 'black' }}
+                        contentInset={{ left: 15, right: 15 }}
+                      />
+                    </View>
                   </View>
-                </View>
+                </>
               </Card>
             </>
           ) : (

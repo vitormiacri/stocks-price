@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -97,4 +97,10 @@ export const Marquee = styled.div`
   animation: ${marquee} 20s linear infinite;
 
   white-space: nowrap;
+`;
+
+export const ChartTitle = styled.p`
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  font-weight: bold;
 `;

@@ -9,14 +9,14 @@ export default function Button({
   loading,
   backgroundColor,
   color,
-  handleClick,
+  ...rest
 }) {
   return (
     <ButtonSearch
-      onClick={handleClick}
       backgroundColor={backgroundColor}
       color={color}
       loading={loading}
+      {...rest}
     >
       {loading ? <MdAutorenew size={26} color="#FFF" /> : children}
     </ButtonSearch>

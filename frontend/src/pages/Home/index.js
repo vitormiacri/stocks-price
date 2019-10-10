@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdSearch } from 'react-icons/md';
 import { toast } from 'react-toastify';
@@ -11,6 +11,7 @@ import {
   Area,
   ResponsiveContainer,
 } from 'recharts';
+import CurrencyFormat from 'react-currency-format';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -27,6 +28,7 @@ import {
   Description,
   CardContainer,
   Marquee,
+  ChartTitle,
 } from './styles';
 
 import { addStocksRequest } from '../../store/modules/stocks/actions';
@@ -39,6 +41,8 @@ export default function Home() {
   const historicalPrices = useSelector(state => state.stocks.historicalPrices);
   const company = useSelector(state => state.stocks.company);
   const logo = useSelector(state => state.stocks.logo);
+
+  const inputRef = useRef();
 
   const [marquee, setMarquee] = useState();
 
@@ -63,6 +67,7 @@ export default function Home() {
     }
 
     loadStocks();
+    inputRef.current.focus();
   }, []);
 
   function handleOnClick() {
@@ -91,13 +96,15 @@ export default function Home() {
           value={symbol}
           name="symbol"
           loading={loading}
-          handleKeyPress={handleKeyPress}
-          handleChange={e => setSymbol(e.target.value)}
+          ref={inputRef}
+          onChange={e => setSymbol(e.target.value)}
+          onKeyDown={handleKeyPress}
+          placeholder="Digite o código da ação"
         />
         <Button
           backgroundColor="#3D5AFE"
           loading={loading}
-          handleClick={handleOnClick}
+          onClick={handleOnClick}
         >
           <MdSearch size={26} color="#fff" />
         </Button>
@@ -110,8 +117,17 @@ export default function Home() {
           <Card loading={loading}>
             <>
               <LatestPrice>
-                <div className="symbol">
-                  <strong>{latestPrice}</strong>
+                <div>
+                  <CurrencyFormat
+                    value={latestPrice}
+                    displayType="text"
+                    thousandSeparator="."
+                    decimalSeparator=","
+                    renderText={value => <strong>{value}</strong>}
+                    decimalScale={2}
+                    prefix="$"
+                  />
+
                   <span>USD</span>
                 </div>
                 <img src={logo} alt={company.companyName} />
@@ -138,20 +154,34 @@ export default function Home() {
           </Card>
 
           <Card loading={loading}>
-            <ResponsiveContainer width="100%" height={400}>
-              <AreaChart data={historicalPrices}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="label" />
-                <YAxis />
-                <Tooltip />
-                <Area
-                  type="monotone"
-                  dataKey="value"
-                  stroke="#8884d8"
-                  fill="#8884d8"
-                />
-              </AreaChart>
-            </ResponsiveContainer>
+            <>
+              <ChartTitle>Last 30 days</ChartTitle>
+              <ResponsiveContainer width="100%" height={400}>
+                <AreaChart data={historicalPrices}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="label" />
+                  <YAxis />
+                  <Tooltip
+                    formatter={value => (
+                      <CurrencyFormat
+                        value={value}
+                        displayType="text"
+                        thousandSeparator="."
+                        decimalSeparator=","
+                        decimalScale={2}
+                        prefix="$"
+                      />
+                    )}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="value"
+                    stroke="#8884d8"
+                    fill="#8884d8"
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </>
           </Card>
         </CardContainer>
       ) : (

@@ -33,9 +33,13 @@ yarn install
 ```
 
 - Antes de executar a aplicação é preciso informar a chave pública da API da IEX.
-  Para conseguir uma chave siga o tutorial da documentação deles [clicando aqui](https://iexcloud.io/docs/api/#rest-how-to)
+  Para obter uma, siga o tutorial da documentação deles [clicando aqui.](https://iexcloud.io/docs/api/#rest-how-to)
 
-- Agora basta criar uma cópia do arquivo _.env.example_ dentro da pasta raiz e renomeá-lo para _.env_ e preencher a variável `REACT_APP_API_TOKEN` com o valor da chave fornecida pela IEX.
+- Agora renomeie o arquivo _.env.example_ para _.env_ e preencha a variável `REACT_APP_API_TOKEN` com o valor da chave fornecida pela IEX, exemplo:
+
+```
+REACT_APP_API_TOKEN=pk_532ce443b4b54f847fs870e54379a54d06c1
+```
 
 - Agora é só rodar o comando:
 
@@ -59,10 +63,10 @@ yarn start
 git clone https://github.com/vitormiacri/stocks-price
 ```
 
-- Acesse a pasta `mobilestock`:
+- Acesse a pasta `mobilestocks`:
 
 ```
-cd mobilestock
+cd mobilestocks
 ```
 
 - Baixe as dependências:
@@ -75,13 +79,13 @@ yarn install
 
 - Plug e/ou configure o seu emulador ou dispositivo;
 
-- Depois do ambiente com a SDK e o emulador ou dispotivo Android configurado, instale a aplicação:
+- Depois do ambiente com a SDK e o emulador ou dispotivo Android configurado plugado, instale a aplicação:
 
 ```
 react-native run-android
 ```
 
-- Agora é só rodar o comando:
+- Agora é só rodar o comando e aguardar o aplicativo iniciar:
 
 ```
 npm start

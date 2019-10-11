@@ -6,7 +6,7 @@ Para o desenvolvimento, foi utilizada a API gratuita da [IEX](https://iexcloud.i
 
 ## Demonstração Online
 
-Para acessar a demonstração online no [heroku](https://www.heroku.com) acesse -> [Stock\$Price](https://iexcloud.io/docs/api/).
+Para acessar a demonstração online no [heroku](https://www.heroku.com) acesse -> [Stock\$Price](https://stocksprices.herokuapp.com/).
 
 ## Instalação local
 

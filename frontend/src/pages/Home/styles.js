@@ -42,7 +42,7 @@ export const LatestPrice = styled.div`
   justify-content: space-between;
 
   strong {
-    font-size: 2.3rem;
+    font-size: 2.5rem;
     color: #737373;
     margin-right: 10px;
   }

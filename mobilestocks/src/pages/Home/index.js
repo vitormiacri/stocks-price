@@ -25,7 +25,6 @@ import {
   LatestPrice,
   Price,
   TPrice,
-  TCurrency,
   Logo,
   Company,
   CTitle,
@@ -94,7 +93,6 @@ export default function Home() {
                         decimalScale={2}
                         prefix="$"
                       />
-                      <TCurrency>USD</TCurrency>
                     </Price>
                     <Logo
                       source={{ uri: logo }}
@@ -113,7 +111,7 @@ export default function Home() {
               </Card>
               <Card loading={loading}>
                 <>
-                  <CTitle>Last 5 days</CTitle>
+                  <CTitle>Últimos 5 dias</CTitle>
                   <View
                     style={{ height: 250, padding: 5, flexDirection: 'row' }}
                   >

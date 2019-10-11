@@ -1,18 +1,11 @@
 import React, { forwardRef } from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 import { InputSearch } from './styles';
 
-function Input({ loading, ...rest }, ref) {
-  return <InputSearch ref={ref} loading={loading} {...rest} />;
+function Input({ ...props }, ref) {
+  const loading = useSelector(state => state.stocks.loading);
+  return <InputSearch ref={ref} loading={loading} {...props} />;
 }
-
-Input.propTypes = {
-  loading: PropTypes.bool,
-};
-
-Input.defaultProps = {
-  loading: false,
-};
 
 export default forwardRef(Input);

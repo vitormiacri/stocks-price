@@ -114,7 +114,7 @@ export default function Home() {
       latestPrice > 0 &&
       Object.keys(company).length > 0 ? (
         <CardContainer>
-          <Card loading={loading}>
+          <Card>
             <>
               <LatestPrice>
                 <div>
@@ -127,8 +127,6 @@ export default function Home() {
                     decimalScale={2}
                     prefix="$"
                   />
-
-                  <span>USD</span>
                 </div>
                 <img src={logo} alt={company.companyName} />
               </LatestPrice>
@@ -153,9 +151,9 @@ export default function Home() {
             </>
           </Card>
 
-          <Card loading={loading}>
+          <Card>
             <>
-              <ChartTitle>Last 30 days</ChartTitle>
+              <ChartTitle>Últimos 30 dias</ChartTitle>
               <ResponsiveContainer width="100%" height={400}>
                 <AreaChart data={historicalPrices}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -185,7 +183,7 @@ export default function Home() {
           </Card>
         </CardContainer>
       ) : (
-        <Card loading={loading}>
+        <Card>
           <p>Nenhuma ação informada/encontrada</p>
         </Card>
       )}

@@ -1,16 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import { MdAutorenew } from 'react-icons/md';
 
 import { ButtonSearch } from './styles';
 
-export default function Button({
-  children,
-  loading,
-  backgroundColor,
-  color,
-  ...rest
-}) {
+export default function Button({ children, backgroundColor, color, ...rest }) {
+  const loading = useSelector(state => state.stocks.loading);
   return (
     <ButtonSearch
       backgroundColor={backgroundColor}
@@ -25,14 +22,12 @@ export default function Button({
 
 Button.propTypes = {
   children: PropTypes.element.isRequired,
-  loading: PropTypes.bool,
   backgroundColor: PropTypes.string,
   color: PropTypes.string,
   handleClick: PropTypes.func.isRequired,
 };
 
 Button.defaultProps = {
-  loading: false,
   backgroundColor: '#e0e0e0',
   color: '#000',
 };

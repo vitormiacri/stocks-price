@@ -76,12 +76,6 @@ export const TPrice = styled.Text`
   margin-right: 10px;
 `;
 
-export const TCurrency = styled.Text`
-  color: #999;
-  font-weight: bold;
-  font-size: 12px;
-`;
-
 export const Logo = styled.Image`
   width: 80px;
   height: 80px;

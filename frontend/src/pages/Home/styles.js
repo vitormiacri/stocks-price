@@ -5,7 +5,7 @@ export const Container = styled.div`
   max-width: 960px;
   min-height: 100%;
   margin: 0 auto;
-  padding-top: 50px;
+  padding: 50px 20px 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +54,8 @@ export const LatestPrice = styled.div`
   }
 
   img {
-    width: 100px;
+    max-width: 100px;
+    width: 100%;
   }
 `;
 

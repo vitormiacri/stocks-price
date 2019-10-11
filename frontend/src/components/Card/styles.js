@@ -28,10 +28,6 @@ export const Container = styled.div`
     align-self: center;
   }
 
-  &:last-of-type {
-    margin-bottom: 30px;
-  }
-
   ${props =>
     props.loading &&
     css`

@@ -53,6 +53,8 @@ yarn start
 
 ## Instalação Mobile
 
+![stockpricemobile](https://github.com/vitormiacri/stocks-price/blob/master/stockprice.gif)
+
 > Atenção! Para a construção do aplicativo mobile, foi utilizado React Native, somente testado na plataforma **Android**
 
 - Siga os passos abaixo para rodar a aplicação:
